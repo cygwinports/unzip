@@ -1,0 +1,28 @@
+NAME="unzip"
+VERSION=6.0
+RELEASE=1
+CATEGORY="Archive"
+SUMMARY="Info-ZIP decompression utility"
+DESCRIPTION="UnZip is an extraction utility for archives compressed in .zip
+format. Although highly compatible both with PKWARE's PKZIP and PKUNZIP
+utilities for MS-DOS and with Info-ZIP's own Zip program, the primary objective
+is portability and non-MSDOS functionality."
+HOMEPAGE="http://www.info-zip.org/"
+SRC_URI="mirror://sourceforge/infozip/unzip${VERSION//.}.tar.gz"
+SRC_DIR="unzip${VERSION//.}"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake -f unix/Makefile unix_make
+	cygmake -f unix/Makefile unzips CC=${CC} LD=${CC} AS=${CC} \
+		CFLAGS="${CFLAGS} -O3 -DNO_LCHMOD" LF2= \
+		E=".exe" CP="cp" LN="ln -s"
+}
+
+src_install() {
+	cd ${B}
+	USE_DESTDIR=0 cyginstall -f unix/Makefile MANDIR=${D}/usr/share/man/man1
+
+	dodoc MANUAL WHERE History.* *.txt
+}
