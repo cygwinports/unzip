@@ -1,6 +1,6 @@
 NAME="unzip"
 VERSION=6.0
-RELEASE=1
+RELEASE=11
 CATEGORY="Archive"
 SUMMARY="Info-ZIP decompression utility"
 DESCRIPTION="UnZip is an extraction utility for archives compressed in .zip
@@ -10,13 +10,22 @@ is portability and non-MSDOS functionality."
 HOMEPAGE="http://www.info-zip.org/"
 SRC_URI="mirror://sourceforge/infozip/unzip${VERSION//.}.tar.gz"
 SRC_DIR="unzip${VERSION//.}"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-bzip2-configure.patch
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-close.patch
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-attribs-overflow.patch
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-nostrip.patch
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-fix-recmatch.patch
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-symlink.patch
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-caseinsensitive.patch
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-format-secure.patch
+"
 
 src_compile() {
 	lndirs
 	cd ${B}
-	cygmake -f unix/Makefile unix_make
-	cygmake -f unix/Makefile unzips CC=${CC} LD=${CC} AS=${CC} \
-		CFLAGS="${CFLAGS} -O3 -DNO_LCHMOD" LF2= \
+	cygmake -f unix/Makefile generic_gcc CC=${CC} LD=${CC} AS=${CC} \
+		CF_NOOPT="${CFLAGS} -DUNIX -I." \
 		E=".exe" CP="cp" LN="ln -s"
 }
 
