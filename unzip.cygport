@@ -31,7 +31,7 @@ src_compile() {
 
 src_install() {
 	cd ${B}
-	USE_DESTDIR=0 cyginstall -f unix/Makefile MANDIR=${D}/usr/share/man/man1
+	USE_DESTDIR=0 cyginstall -f unix/Makefile LN="ln -s" MANDIR=${D}/usr/share/man/man1
 
 	dodoc MANUAL WHERE History.* *.txt
 }
