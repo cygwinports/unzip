@@ -1,6 +1,6 @@
 NAME="unzip"
 VERSION=6.0
-RELEASE=11
+RELEASE=12
 CATEGORY="Archive"
 SUMMARY="Info-ZIP decompression utility"
 DESCRIPTION="UnZip is an extraction utility for archives compressed in .zip
@@ -19,6 +19,7 @@ PATCH_URI="
 	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-symlink.patch
 	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-caseinsensitive.patch
 	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-format-secure.patch
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-overflow.patch
 "
 
 src_compile() {
