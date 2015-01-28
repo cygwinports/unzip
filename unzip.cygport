@@ -1,6 +1,6 @@
 NAME="unzip"
 VERSION=6.0
-RELEASE=12
+RELEASE=13
 CATEGORY="Archive"
 SUMMARY="Info-ZIP decompression utility"
 DESCRIPTION="UnZip is an extraction utility for archives compressed in .zip
@@ -19,6 +19,8 @@ PATCH_URI="
 	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-symlink.patch
 	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-caseinsensitive.patch
 	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-format-secure.patch
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-valgrind.patch
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-x-option.patch
 	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-overflow.patch
 "
 
@@ -26,7 +28,7 @@ src_compile() {
 	lndirs
 	cd ${B}
 	cygmake -f unix/Makefile generic_gcc CC=${CC} LD=${CC} AS=${CC} \
-		CF_NOOPT="${CFLAGS} -DUNIX -I." \
+		CF_NOOPT="${CFLAGS} -DUNIX -DNOMEMCPY -DIZ_HAVE_UXUIDGID -I." \
 		E=".exe" CP="cp" LN="ln -s"
 }
 
