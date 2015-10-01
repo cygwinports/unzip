@@ -1,6 +1,6 @@
 NAME="unzip"
 VERSION=6.0
-RELEASE=14
+RELEASE=15
 CATEGORY="Archive"
 SUMMARY="Info-ZIP decompression utility"
 DESCRIPTION="UnZip is an extraction utility for archives compressed in .zip
@@ -26,7 +26,7 @@ PATCH_URI="
 	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-cve-2014-8140.patch
 	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-cve-2014-8141.patch
 	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-overflow-long-fsize.patch
-
+	http://pkgs.fedoraproject.org/cgit/unzip.git/plain/unzip-6.0-heap-overflow-infloop.patch
 "
 
 src_compile() {
